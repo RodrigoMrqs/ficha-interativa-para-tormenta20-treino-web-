@@ -22,15 +22,15 @@ Passos ordenados por prioridade e dependência. Cada fase deve ser concluída an
 
 ## Fase 3 — Banco de dados
 
-- [ ] Criar instância PostgreSQL local para desenvolvimento (via Docker ou Railway dev environment)
-- [ ] Instalar e inicializar Prisma (`prisma init`)
-- [ ] Modelar o schema inicial no `schema.prisma`:
-  - [ ] Model `User` (id, nome, email, avatar)
-  - [ ] Model `Character` (atributos, perícias, HP, mana, nível, raça, classe)
-  - [ ] Model `Campaign` (nome, código de convite, mestre, jogadores)
-  - [ ] Model `CharacterCampaign` (relação N:N entre personagens e campanhas)
-- [ ] Rodar a primeira migration com `prisma migrate dev`
-- [ ] Criar arquivo `lib/prisma.ts` com o singleton do Prisma Client
+- [x] Criar instância PostgreSQL no Neon (plano gratuito, substituiu Docker local)
+- [x] Instalar e inicializar Prisma (`prisma init`)
+- [x] Modelar o schema inicial no `schema.prisma`:
+  - [x] Model `User` (id, nome, email, avatar)
+  - [x] Model `Character` (atributos, HP, mana, raça, multiclasse com class1/class2)
+  - [x] Model `Campaign` (nome, código de convite, mestre)
+  - [x] Model `CharacterCampaign` (relação N:N entre personagens e campanhas)
+- [x] Rodar a primeira migration com `prisma migrate dev`
+- [x] Criar arquivo `lib/prisma.ts` com o singleton do Prisma Client
 
 ## Fase 4 — Autenticação
 

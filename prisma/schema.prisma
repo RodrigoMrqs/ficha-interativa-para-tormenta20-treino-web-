@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+  output   = "./ERD.svg"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  characters Character[]
+  campaigns  Campaign[]  @relation("CampaignMaster")
+}
+
+model Character {
+  id          String @id @default(cuid())
+  name        String
+  race        String
+  class1      String
+  class1Level Int    @default(1)
+  class2      String?   
+  class2Level Int?
+
+  xp          Int    @default(0)
+  currentHp   Int
+  maxHp       Int
+  currentMana Int    @default(0)
+  maxMana     Int    @default(0)
+
+  strength     Int @default(10)
+  dexterity    Int @default(10)
+  constitution Int @default(10)
+  intelligence Int @default(10)
+  wisdom       Int @default(10)
+  charisma     Int @default(10)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  characterCampaigns CharacterCampaign[]
+}
+
+model Campaign {
+  id         String @id @default(cuid())
+  name       String
+  inviteCode String @unique @default(cuid())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  masterId String
+  master   User   @relation("CampaignMaster", fields: [masterId], references: [id])
+
+  characterCampaigns CharacterCampaign[]
+}
+
+model CharacterCampaign {
+  id          String   @id @default(cuid())
+  joinedAt    DateTime @default(now())
+
+  characterId String
+  character   Character @relation(fields: [characterId], references: [id])
+
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id])
+
+  @@unique([characterId, campaignId])
+}

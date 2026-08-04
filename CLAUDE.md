@@ -52,16 +52,28 @@ Inspirada no [CRIS](https://crisordemparanormal.com), plataforma de fichas onlin
 ## Estado atual do projeto
 
 ### Fase 1 — Fundação (concluída)
-- [x] Stack definida
 - [x] Next.js 15 inicializado (TypeScript, App Router, Tailwind CSS, ESLint)
 - [x] `tsconfig.json` com `strict: true`
 - [x] Prettier instalado e integrado ao ESLint (`eslint-config-prettier`)
-- [x] Estrutura de pastas criada (`/app`, `/components`, `/lib`, `/server`)
+- [x] Estrutura de pastas criada (`/app`, `/components`, `/lib`, `/server`, `/prisma`)
 - [x] Primeiro commit e push para o GitHub
 
+### Fase 2 — Interface base (concluída)
+- [x] shadcn/ui instalado e configurado
+- [x] Layout raiz (`/app/layout.tsx`) com fonte e tema do projeto
+- [x] Página inicial (`/app/page.tsx`) com apresentação da plataforma
+- [x] Componentes de navegação (header, sidebar)
+- [x] Paleta de cores e tipografia inspirada no visual de Tormenta 20
+
+### Fase 3 — Banco de dados (concluída)
+- [x] PostgreSQL provisionado no Neon (plano gratuito permanente)
+- [x] Prisma instalado e configurado com `prisma.config.ts`
+- [x] Schema modelado: `User`, `Character` (com multiclasse), `Campaign`, `CharacterCampaign`
+- [x] ERD generator configurado — diagrama gerado em `prisma/ERD.svg`
+- [x] `lib/prisma.ts` com singleton do Prisma Client
+- [x] Primeira migration aplicada no banco
+
 ### Próximas fases
-- [ ] Fase 2 — Interface base (shadcn/ui, layout, tema)
-- [ ] Fase 3 — Banco de dados (PostgreSQL + Prisma)
 - [ ] Fase 4 — Autenticação (Auth.js, Google + Discord)
 - [ ] Fase 5 — Ficha de personagem (CRUD)
 - [ ] Fase 6 — Rolagem de dados
@@ -69,6 +81,16 @@ Inspirada no [CRIS](https://crisordemparanormal.com), plataforma de fichas onlin
 - [ ] Fase 8 — Gestão de campanhas
 - [ ] Fase 9 — Compêndio
 - [ ] Fase 10 — Deploy no Railway
+
+---
+
+## Como o Claude deve atuar neste projeto
+
+**Modo professor:** O objetivo do projeto é aprendizado. O Claude não deve executar comandos, criar arquivos ou escrever código pelo usuário. Deve explicar o que fazer, por quê, e aguardar o usuário executar. Só intervém diretamente se o usuário pedir explicitamente.
+
+**Atualização automática de progresso:**
+- A cada passo concluído dentro de uma fase: atualizar `docs/tasks.md` marcando o item como `[x]`
+- Ao concluir uma fase inteira: atualizar `CLAUDE.md` movendo a fase para "concluída" com seus itens detalhados
 
 ---
 
