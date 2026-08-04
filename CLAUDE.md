@@ -51,15 +51,24 @@ Inspirada no [CRIS](https://crisordemparanormal.com), plataforma de fichas onlin
 
 ## Estado atual do projeto
 
+### Fase 1 — Fundação (concluída)
 - [x] Stack definida
-- [ ] Estrutura inicial do projeto (Next.js + Prisma + Auth.js)
-- [ ] Modelagem do banco de dados (schema Prisma)
-- [ ] Autenticação com Google/Discord
-- [ ] Ficha de personagem básica (CRUD)
-- [ ] Integração Socket.io (real-time)
-- [ ] Gestão de campanhas
-- [ ] Compêndio
-- [ ] Deploy no Railway
+- [x] Next.js 15 inicializado (TypeScript, App Router, Tailwind CSS, ESLint)
+- [x] `tsconfig.json` com `strict: true`
+- [x] Prettier instalado e integrado ao ESLint (`eslint-config-prettier`)
+- [x] Estrutura de pastas criada (`/app`, `/components`, `/lib`, `/server`)
+- [x] Primeiro commit e push para o GitHub
+
+### Próximas fases
+- [ ] Fase 2 — Interface base (shadcn/ui, layout, tema)
+- [ ] Fase 3 — Banco de dados (PostgreSQL + Prisma)
+- [ ] Fase 4 — Autenticação (Auth.js, Google + Discord)
+- [ ] Fase 5 — Ficha de personagem (CRUD)
+- [ ] Fase 6 — Rolagem de dados
+- [ ] Fase 7 — Tempo real (Socket.io)
+- [ ] Fase 8 — Gestão de campanhas
+- [ ] Fase 9 — Compêndio
+- [ ] Fase 10 — Deploy no Railway
 
 ---
 

@@ -10,15 +10,15 @@ Passos ordenados por prioridade e dependência. Cada fase deve ser concluída an
 - [x] Configurar `tsconfig.json` com `strict: true`
 - [x] Instalar e configurar Prettier com regras básicas
 - [x] Criar estrutura de pastas do projeto (`/app`, `/components`, `/lib`, `/server`, `/prisma`)
-- [ ] Inicializar repositório Git e fazer primeiro commit da estrutura base
+- [x] Inicializar repositório Git e fazer primeiro commit da estrutura base
 
 ## Fase 2 — Interface base
 
-- [ ] Instalar e configurar shadcn/ui
-- [ ] Criar layout raiz (`/app/layout.tsx`) com fonte e tema do projeto
-- [ ] Criar página inicial (`/app/page.tsx`) com apresentação da plataforma
-- [ ] Criar componentes de navegação (header, sidebar)
-- [ ] Definir paleta de cores e tipografia inspirada no visual de Tormenta 20
+- [x] Instalar e configurar shadcn/ui
+- [x] Criar layout raiz (`/app/layout.tsx`) com fonte e tema do projeto
+- [x] Criar página inicial (`/app/page.tsx`) com apresentação da plataforma
+- [x] Criar componentes de navegação (header, sidebar)
+- [x] Definir paleta de cores e tipografia inspirada no visual de Tormenta 20
 
 ## Fase 3 — Banco de dados
 
