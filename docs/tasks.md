@@ -34,14 +34,14 @@ Passos ordenados por prioridade e dependência. Cada fase deve ser concluída an
 
 ## Fase 4 — Autenticação
 
-- [ ] Instalar Auth.js (`next-auth`) e dependências
-- [ ] Configurar provider do Google OAuth (criar app no Google Cloud Console)
-- [ ] Configurar provider do Discord OAuth (criar app no Discord Developer Portal)
-- [ ] Criar arquivo `auth.ts` na raiz com a configuração do Auth.js
-- [ ] Criar API route `/api/auth/[...nextauth]/route.ts`
-- [ ] Conectar Auth.js ao Prisma (Prisma Adapter)
-- [ ] Criar páginas de login e logout
-- [ ] Proteger rotas autenticadas com middleware do Next.js (`middleware.ts`)
+- [x] Instalar Auth.js (`next-auth@beta`) e `@auth/prisma-adapter`
+- [x] Configurar provider do Google OAuth (Google Cloud Console)
+- [x] Configurar provider do Discord OAuth (Discord Developer Portal)
+- [x] Criar arquivo `lib/auth.ts` com a configuração do Auth.js
+- [x] Criar API route `app/api/auth/[...nextauth]/route.ts`
+- [x] Conectar Auth.js ao Prisma (Prisma Adapter) — adicionado `emailVerified` ao model `User`
+- [x] Criar página de login (`app/login/page.tsx`) com Server Actions
+- [x] Proteger rotas autenticadas com `proxy.ts` (Next.js 16)
 
 ## Fase 5 — Ficha de personagem (CRUD)
 
@@ -89,12 +89,12 @@ Passos ordenados por prioridade e dependência. Cada fase deve ser concluída an
 
 ## Fase 10 — Deploy
 
-- [ ] Criar conta no Railway e iniciar novo projeto
-- [ ] Adicionar serviço PostgreSQL no Railway e obter a `DATABASE_URL`
-- [ ] Configurar variáveis de ambiente no Railway (secrets do OAuth, `NEXTAUTH_SECRET`, etc.)
-- [ ] Conectar o repositório GitHub ao Railway para deploy automático
-- [ ] Configurar o `Dockerfile` ou deixar Railway detectar o projeto Next.js
-- [ ] Rodar migrations em produção via Railway (`prisma migrate deploy`)
+- [ ] Criar conta no Fly.io e instalar CLI (`flyctl`)
+- [ ] Criar `Dockerfile` para a aplicação Next.js com custom server
+- [ ] Rodar `fly launch` para configurar o projeto
+- [ ] Configurar variáveis de ambiente no Fly.io (secrets do OAuth, `AUTH_SECRET`, `DATABASE_URL`, etc.)
+- [ ] Rodar migrations em produção (`prisma migrate deploy`)
+- [ ] Fazer o deploy com `fly deploy`
 - [ ] Validar fluxo completo em produção: login → criar personagem → entrar em campanha → sync ao vivo
 
 ---

@@ -19,23 +19,23 @@ Inspirada no [CRIS](https://crisordemparanormal.com), plataforma de fichas onlin
 
 | Camada | Tecnologia |
 |---|---|
-| Framework | Next.js 15 (App Router) |
+| Framework | Next.js 16 (App Router) |
 | Linguagem | TypeScript |
 | UI | Tailwind CSS + shadcn/ui |
 | Real-time | Socket.io |
-| Banco de dados | PostgreSQL + Prisma ORM |
+| Banco de dados | PostgreSQL (Neon) + Prisma ORM |
 | Autenticação | Auth.js (NextAuth v5) — Google + Discord OAuth |
 | Validação | Zod |
-| Hospedagem | Railway (container + Postgres) |
+| Hospedagem | Fly.io (gratuito, suporta WebSockets + custom server) |
 
 ---
 
 ## Decisões de arquitetura tomadas
 
 - **Real-time é essencial**: HP, status e recursos dos personagens devem sincronizar ao vivo durante as sessões. Socket.io com rooms por campanha é a solução escolhida.
-- **Next.js com custom server**: Para rodar Socket.io junto ao Next.js num único container no Railway, será usado um `server.ts` customizado.
+- **Next.js com custom server**: Para rodar Socket.io junto ao Next.js num único container, será usado um `server.ts` customizado.
 - **Auth social obrigatório**: Somente Google e Discord OAuth, sem sistema de senhas próprio.
-- **Railway como host**: Escolhido por suportar WebSockets persistentes e Postgres incluso, diferente de Vercel que limita WebSockets.
+- **Fly.io como host**: Escolhido por suportar WebSockets persistentes e ser 100% gratuito para MVP. Vercel descartado por não suportar WebSockets persistentes. Railway descartado por não ser garantidamente gratuito ($5 crédito/mês).
 
 ---
 
@@ -73,14 +73,22 @@ Inspirada no [CRIS](https://crisordemparanormal.com), plataforma de fichas onlin
 - [x] `lib/prisma.ts` com singleton do Prisma Client
 - [x] Primeira migration aplicada no banco
 
+### Fase 4 — Autenticação (concluída)
+- [x] Auth.js (next-auth@beta) instalado com @auth/prisma-adapter
+- [x] Google OAuth e Discord OAuth configurados
+- [x] `lib/auth.ts` com configuração dos providers
+- [x] API route `app/api/auth/[...nextauth]/route.ts`
+- [x] Models de auth adicionados ao schema (`Account`, `Session`, `VerificationToken`, `emailVerified` no `User`)
+- [x] Página de login com Server Actions (`app/login/page.tsx`)
+- [x] Rotas protegidas via `proxy.ts` (Next.js 16)
+
 ### Próximas fases
-- [ ] Fase 4 — Autenticação (Auth.js, Google + Discord)
 - [ ] Fase 5 — Ficha de personagem (CRUD)
 - [ ] Fase 6 — Rolagem de dados
 - [ ] Fase 7 — Tempo real (Socket.io)
 - [ ] Fase 8 — Gestão de campanhas
 - [ ] Fase 9 — Compêndio
-- [ ] Fase 10 — Deploy no Railway
+- [ ] Fase 10 — Deploy no Fly.io
 
 ---
 
