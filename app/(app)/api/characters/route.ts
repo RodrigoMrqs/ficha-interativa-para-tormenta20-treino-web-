@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server"
-import { auth } from "@/lib/auth"
+import { requireSession, requireCharacter } from "@/lib/api"
 import { prisma } from "@/lib/prisma"
 import { CharacterSchema } from "@/lib/validator/character"
 
 export async function GET() {
-  const session = await auth()
-  if (!session) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  const session = await requireSession()
+  if (session instanceof NextResponse) {
+    return session
   }
 
   const characters = await prisma.character.findMany({
@@ -18,9 +18,9 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-  const session = await auth()
-  if (!session) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  const session = await requireSession()
+  if (session instanceof NextResponse) {
+    return session
   }
 
   const body = await req.json()
