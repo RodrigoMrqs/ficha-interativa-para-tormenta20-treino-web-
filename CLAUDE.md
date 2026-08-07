@@ -82,8 +82,17 @@ Inspirada no [CRIS](https://crisordemparanormal.com), plataforma de fichas onlin
 - [x] Página de login com Server Actions (`app/login/page.tsx`)
 - [x] Rotas protegidas via `proxy.ts` (Next.js 16)
 
+### Fase 5 — Ficha de personagem (em andamento)
+- [x] Zod instalado e schema de validação criado (`lib/validator/character.ts`)
+- [x] Schema Prisma refatorado — multiclasse ilimitada via model `CharacterClass`
+- [x] API routes criadas: GET/POST `/api/characters` e GET/PUT/DELETE `/api/characters/[id]`
+- [x] Listagem de personagens (`app/(app)/characters/page.tsx`)
+- [ ] Página de criação (`character/new/page.tsx`) + formulário completo
+- [ ] Página de visualização (`character/[id]/page.tsx`)
+- [ ] Página de edição (`character/[id]/edit/page.tsx`)
+- [ ] Deleção com confirmação
+
 ### Próximas fases
-- [ ] Fase 5 — Ficha de personagem (CRUD)
 - [ ] Fase 6 — Rolagem de dados
 - [ ] Fase 7 — Tempo real (Socket.io)
 - [ ] Fase 8 — Gestão de campanhas

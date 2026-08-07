@@ -45,13 +45,16 @@ Passos ordenados por prioridade e dependência. Cada fase deve ser concluída an
 
 ## Fase 5 — Ficha de personagem (CRUD)
 
-- [ ] Criar página de criação de personagem (`/app/personagem/novo/page.tsx`)
-- [ ] Criar formulário com todos os campos da ficha T20 (atributos, perícias, raça, classe)
-- [ ] Criar API routes para salvar e buscar personagens (`/api/personagens`)
-- [ ] Validar dados do formulário com Zod antes de enviar para a API
-- [ ] Criar página de visualização da ficha (`/app/personagem/[id]/page.tsx`)
-- [ ] Criar página de edição da ficha (`/app/personagem/[id]/editar/page.tsx`)
-- [ ] Criar listagem de personagens do usuário (`/app/personagens/page.tsx`)
+- [x] Instalar Zod para validação
+- [x] Criar schema Zod em `lib/validator/character.ts`
+- [x] Criar API route GET e POST em `app/(app)/api/characters/route.ts`
+- [x] Criar API route GET, PUT e DELETE em `app/(app)/api/characters/[id]/route.ts`
+- [x] Criar listagem de personagens (`app/(app)/characters/page.tsx`)
+- [x] Schema atualizado para multiclasse ilimitada (`CharacterClass` model separado)
+- [ ] Criar página de criação de personagem (`app/(app)/character/new/page.tsx`)
+- [ ] Criar formulário com campos da ficha T20 (atributos, raça, classes)
+- [ ] Criar página de visualização da ficha (`app/(app)/character/[id]/page.tsx`)
+- [ ] Criar página de edição da ficha (`app/(app)/character/[id]/edit/page.tsx`)
 - [ ] Implementar deleção de personagem com confirmação
 
 ## Fase 6 — Rolagem de dados

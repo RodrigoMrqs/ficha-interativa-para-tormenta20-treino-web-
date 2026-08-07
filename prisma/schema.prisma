@@ -36,10 +36,6 @@ model Character {
   id          String @id @default(cuid())
   name        String
   race        String
-  class1      String
-  class1Level Int    @default(1)
-  class2      String?   
-  class2Level Int?
 
   xp          Int    @default(0)
   currentHp   Int
@@ -61,6 +57,16 @@ model Character {
   user   User   @relation(fields: [userId], references: [id])
 
   characterCampaigns CharacterCampaign[]
+  characterClass CharacterClasses[]
+}
+
+model CharacterClasses {
+  id          String @id @default(cuid())
+  class       String 
+  level       Int    @default(1)
+
+  characterId String
+  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
 }
 
 model Campaign {
