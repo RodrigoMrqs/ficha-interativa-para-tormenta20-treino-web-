@@ -2,6 +2,10 @@
 
 Passos ordenados por prioridade e dependência. Cada fase deve ser concluída antes de avançar para a próxima.
 
+## Estratégia de desenvolvimento
+
+**Backend primeiro, frontend depois.** Todo o backend (API routes, lógica de negócio, Socket.io, banco de dados) será construído antes de qualquer página ou componente de UI. As tarefas de frontend de cada fase ficam pendentes até que o backend de todas as fases esteja concluído.
+
 ---
 
 ## Fase 1 — Fundação do projeto
@@ -49,6 +53,7 @@ Passos ordenados por prioridade e dependência. Cada fase deve ser concluída an
 - [x] Criar schema Zod em `lib/validator/character.ts`
 - [x] Criar API route GET e POST em `app/(app)/api/characters/route.ts`
 - [x] Criar API route GET, PUT e DELETE em `app/(app)/api/characters/[id]/route.ts`
+- [x] Criar helpers de autenticação reutilizáveis (`lib/api.ts`)
 - [x] Criar listagem de personagens (`app/(app)/characters/page.tsx`)
 - [x] Schema atualizado para multiclasse ilimitada (`CharacterClass` model separado)
 - [ ] Criar página de criação de personagem (`app/(app)/character/new/page.tsx`)
@@ -59,18 +64,18 @@ Passos ordenados por prioridade e dependência. Cada fase deve ser concluída an
 
 ## Fase 6 — Rolagem de dados
 
-- [ ] Criar função utilitária `lib/dice.ts` (rolar d4, d6, d8, d10, d12, d20, d100)
+- [x] Criar função utilitária `lib/dice.ts` (rolar d4, d6, d8, d10, d12, d20, d100)
 - [ ] Adicionar botão de rolagem em cada atributo e perícia da ficha
 - [ ] Criar componente de resultado de rolagem (toast ou modal animado)
 - [ ] Exibir histórico de rolagens da sessão (últimas 10 rolagens)
 
 ## Fase 7 — Tempo real com Socket.io
 
-- [ ] Instalar Socket.io (`socket.io` e `socket.io-client`)
-- [ ] Criar `server.ts` na raiz para o custom server do Next.js com Socket.io integrado
-- [ ] Atualizar `package.json` para rodar o custom server em vez do `next start` padrão
-- [ ] Criar sistema de rooms (uma room por campanha)
-- [ ] Emitir eventos ao atualizar HP, pontos de mana e status na ficha
+- [x] Instalar Socket.io (`socket.io` e `socket.io-client`)
+- [x] Criar `server.ts` na raiz para o custom server do Next.js com Socket.io integrado
+- [x] Atualizar `package.json` para rodar o custom server em vez do `next start` padrão
+- [x] Criar sistema de rooms (uma room por campanha)
+- [x] Emitir eventos ao atualizar HP, pontos de mana e status na ficha
 - [ ] Receber eventos e atualizar UI em tempo real para todos os jogadores da campanha
 - [ ] Criar hook `useSocket.ts` para gerenciar a conexão no cliente
 

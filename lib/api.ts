@@ -1,7 +1,8 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { auth } from "@/lib/auth"
 import type { Session } from "next-auth"
 import type { CharacterModel } from "@/lib/generated/prisma/models/Character"
+import type { CampaignModel } from "@/lib/generated/prisma/models/Campaign"
 import { prisma } from "@/lib/prisma"
 
 
@@ -25,4 +26,31 @@ export async function requireCharacter( id: string, userId: string, ): Promise<C
     }
 
     return character
+}
+
+export async function requireCampaign( id: string): Promise<CampaignModel | NextResponse> {
+    const campaign = await prisma.campaign.findUnique({
+        where: { id }
+    })
+
+    if (!campaign) {
+        return NextResponse.json({ error: "Campaign not found" }, { status: 404})
+    }
+
+    return campaign
+}
+
+export async function requireCampaignMaster(
+    id: string,
+    userId: string,
+): Promise<CampaignModel | NextResponse> {
+    const campaign = await prisma.campaign.findUnique({
+        where: { id, masterId: userId },
+    })
+
+    if (!campaign) {
+        return NextResponse.json({ error: "Campaign not found or Without a Master" }, { status: 404})
+    }
+
+    return campaign
 }

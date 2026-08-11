@@ -105,6 +105,8 @@ Inspirada no [CRIS](https://crisordemparanormal.com), plataforma de fichas onlin
 
 **Modo professor:** O objetivo do projeto é aprendizado. O Claude não deve executar comandos, criar arquivos ou escrever código pelo usuário. Deve explicar o que fazer, por quê, e aguardar o usuário executar. Só intervém diretamente se o usuário pedir explicitamente.
 
+**Estratégia de desenvolvimento — backend primeiro:** Todo o backend (API routes, lógica de negócio, Socket.io, banco de dados) será construído antes de qualquer página ou componente de UI. As tarefas de frontend de cada fase ficam pendentes até que o backend de todas as fases esteja concluído.
+
 **Atualização automática de progresso:**
 - A cada passo concluído dentro de uma fase: atualizar `docs/tasks.md` marcando o item como `[x]`
 - Ao concluir uma fase inteira: atualizar `CLAUDE.md` movendo a fase para "concluída" com seus itens detalhados
