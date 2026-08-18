@@ -111,3 +111,10 @@
     @apply font-sans;
   }
 }
+
+.snap-page {
+  scrollbar-width: none;
+}
+.snap-page::-webkit-scrollbar {
+  display: none;
+}
