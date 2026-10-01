@@ -2,6 +2,7 @@ import { createServer } from "http"
 import { parse } from "url"
 import next from "next"
 import { Server } from "socket.io"
+import { setIO } from "./lib/socket"
 
 const dev = process.env.NODE_ENV !== "production"
 const app = next({ dev })
@@ -16,6 +17,8 @@ app.prepare().then(() => {
     const io = new Server(httpServer, {
         cors: { origin: "*" }
     })
+
+    setIO(io)
 
     io.on("connection", (socket) => {
         socket.on("joinCampaign", (campaignId: string) => {
