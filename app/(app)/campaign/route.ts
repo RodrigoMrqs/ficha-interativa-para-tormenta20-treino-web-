@@ -14,13 +14,13 @@ export async function GET() {
         where: {
             OR: [
                 { masterId: session.user.id },
-                { characterCampaigns: { some: { character: { userId: session.user.id } } } }
+                { characters: { some:  { userId: session.user.id } }  }
             ]
         },
 
         include: {
             master: { select: { id: true, name: true, image: true } },
-            _count: { select: { characterCampaigns: true } }
+            _count: { select: { characters: true } }
         }
     })
 

@@ -82,11 +82,11 @@ Passos ordenados por prioridade e dependência. Cada fase deve ser concluída an
 ## Fase 8 — Gestão de campanhas
 
 - [ ] Criar página de criação de campanha (`/app/campanha/nova/page.tsx`)
-- [ ] Gerar código de convite único por campanha
-- [ ] Criar fluxo de entrada na campanha via código de convite
+- [x] Gerar código de convite único por campanha (`Campaign.inviteCode`)
+- [x] Criar fluxo de entrada na campanha via código de convite — backend (`POST /campaign/join`), com relação 1:N direta (`Character.campaignId`) e regras: personagem só pode estar em 1 campanha por vez, usuário só pode ter 1 personagem por campanha
 - [ ] Criar painel do mestre com fichas de todos os jogadores em tempo real
-- [ ] Implementar controle de permissões (mestre vs. jogador)
-- [ ] Listar campanhas do usuário (como mestre e como jogador)
+- [x] Implementar controle de permissões (mestre vs. jogador) (`requireCampaignMaster`)
+- [x] Listar campanhas do usuário (como mestre e como jogador) (`GET /campaign`)
 
 ## Fase 9 — Compêndio
 

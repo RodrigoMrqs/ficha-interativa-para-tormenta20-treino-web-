@@ -17,11 +17,11 @@ export async function POST(req: Request) {
 
     const { inviteCode, characterId } = result.data
 
-    const campaing = await prisma.campaign.findUnique({
+    const campaign = await prisma.campaign.findUnique({
         where: { inviteCode }
     })
 
-    if (!campaing) {
+    if (!campaign) {
         return NextResponse.json({ error: "Campaign not found" }, { status: 404})
     }
 
@@ -33,9 +33,22 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: "Character not found" }, { status: 404 })
     }
 
-    const entry = await prisma.characterCampaign.create({
-        data: { campaignId: campaing.id, characterId }
+    if (character.campaignId !== null) {
+        return NextResponse.json({ error: "Character is already in a campaign" }, { status: 409 })
+    }
+
+    const alreadyHasCharacterHere = await prisma.character.findFirst({
+        where: { userId: session.user.id, campaignId: campaign.id }
     })
 
-    return NextResponse.json(entry, { status: 201 })
+    if (alreadyHasCharacterHere) {
+        return NextResponse.json({ error: "You already have a character in this campaign" }, { status: 409 })
+    }
+
+    const updated = await prisma.character.update({
+        where: { id: characterId },
+        data: { campaignId: campaign.id }
+    })
+
+    return NextResponse.json(updated, { status: 201 })
 }

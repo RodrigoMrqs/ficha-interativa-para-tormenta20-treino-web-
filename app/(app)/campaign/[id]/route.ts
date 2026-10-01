@@ -15,11 +15,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
         where: { id },
         include: {
             master: { select: { id: true, name: true, image: true } },
-            characterCampaigns: {
-                include: {
-                    character: { select: { id: true, name: true, race: true } }
-                }
-            }
+            characters: { select: { id: true, name: true, race: true } }
         }
     })
 

@@ -56,8 +56,12 @@ model Character {
   userId String
   user   User   @relation(fields: [userId], references: [id])
 
-  characterCampaigns CharacterCampaign[]
+  campaignId String?
+  campaign   Campaign? @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  
   characterClass CharacterClasses[]
+
+  @@unique([userId, campaignId])
 }
 
 model CharacterClasses {
@@ -79,20 +83,7 @@ model Campaign {
   masterId String
   master   User   @relation("CampaignMaster", fields: [masterId], references: [id])
 
-  characterCampaigns CharacterCampaign[]
-}
-
-model CharacterCampaign {
-  id          String   @id @default(cuid())
-  joinedAt    DateTime @default(now())
-
-  characterId String
-  character   Character @relation(fields: [characterId], references: [id])
-
-  campaignId String
-  campaign   Campaign @relation(fields: [campaignId], references: [id])
-
-  @@unique([characterId, campaignId])
+  characters Character[]
 }
 
 model Account {
