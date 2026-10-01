@@ -36,6 +36,8 @@ Inspirada no [CRIS](https://crisordemparanormal.com), plataforma de fichas onlin
 - **Next.js com custom server**: Para rodar Socket.io junto ao Next.js num único container, será usado um `server.ts` customizado.
 - **Auth social obrigatório**: Somente Google e Discord OAuth, sem sistema de senhas próprio.
 - **Fly.io como host**: Escolhido por suportar WebSockets persistentes e ser 100% gratuito para MVP. Vercel descartado por não suportar WebSockets persistentes. Railway descartado por não ser garantidamente gratuito ($5 crédito/mês).
+- **Compêndio adiado para o final**: a Fase 9 (compêndio de regras do T20) fica para depois de todas as outras fases — o conteúdo depende de uma análise de direitos autorais ainda em andamento.
+- **Personagem em uma única campanha por vez**: `Character` ↔ `Campaign` é uma relação direta (FK `campaignId` nullable em `Character`), não N:N. Um usuário também não pode ter dois personagens seus na mesma campanha (`@@unique([userId, campaignId])`).
 
 ---
 
@@ -68,7 +70,7 @@ Inspirada no [CRIS](https://crisordemparanormal.com), plataforma de fichas onlin
 ### Fase 3 — Banco de dados (concluída)
 - [x] PostgreSQL provisionado no Neon (plano gratuito permanente)
 - [x] Prisma instalado e configurado com `prisma.config.ts`
-- [x] Schema modelado: `User`, `Character` (com multiclasse), `Campaign`, `CharacterCampaign`
+- [x] Schema modelado: `User`, `Character` (com multiclasse e FK direta `campaignId`), `Campaign`
 - [x] ERD generator configurado — diagrama gerado em `prisma/ERD.svg`
 - [x] `lib/prisma.ts` com singleton do Prisma Client
 - [x] Primeira migration aplicada no banco
@@ -92,11 +94,33 @@ Inspirada no [CRIS](https://crisordemparanormal.com), plataforma de fichas onlin
 - [ ] Página de edição (`character/[id]/edit/page.tsx`)
 - [ ] Deleção com confirmação
 
+### Fase 6 — Rolagem de dados (em andamento)
+- [x] Função utilitária `lib/dice.ts` (d4, d6, d8, d10, d12, d20, d100)
+- [ ] Botão de rolagem em cada atributo/perícia da ficha
+- [ ] Componente de resultado de rolagem (toast ou modal)
+- [ ] Histórico das últimas 10 rolagens da sessão
+
+### Fase 7 — Tempo real (em andamento)
+- [x] Socket.io instalado (`socket.io` + `socket.io-client`)
+- [x] `server.ts` customizado (Next.js + Socket.io no mesmo processo)
+- [x] Sistema de rooms por campanha (`joinCampaign` / `leaveCampaign`)
+- [x] `lib/socket.ts` — singleton do `io` via `globalThis`, compartilhado entre `server.ts` e as API routes
+- [ ] API routes emitindo `characterUpdated` após gravar HP/mana/status no banco (substituindo o handler `updateCharacter` do socket, que escreve sem passar pela API)
+- [ ] Hook `useSocket.ts` no cliente
+- [ ] Receber eventos e atualizar a UI em tempo real para os jogadores da campanha
+
+### Fase 8 — Gestão de campanhas (em andamento)
+- [x] API routes: `GET/POST /campaign`, `GET/DELETE /campaign/[id]`, `POST /campaign/join`
+- [x] Código de convite único por campanha (`Campaign.inviteCode`)
+- [x] Controle de permissões mestre vs. jogador (`requireCampaignMaster`)
+- [x] Regra: personagem em no máximo uma campanha por vez (FK direta `campaignId`)
+- [x] Regra: usuário com no máximo um personagem seu por campanha (`@@unique([userId, campaignId])`)
+- [ ] Página de criação de campanha
+- [ ] Fluxo de entrada por código de convite — frontend (decisão em aberto: dividir `POST /campaign/join` em "resolver código → página da campanha" e "adicionar personagem", já que o usuário escolhe o personagem só depois de chegar na página)
+- [ ] Painel do mestre com fichas dos jogadores em tempo real
+
 ### Próximas fases
-- [ ] Fase 6 — Rolagem de dados
-- [ ] Fase 7 — Tempo real (Socket.io)
-- [ ] Fase 8 — Gestão de campanhas
-- [ ] Fase 9 — Compêndio
+- [ ] Fase 9 — Compêndio (adiada propositalmente — depende de análise de direitos autorais)
 - [ ] Fase 10 — Deploy no Fly.io
 
 ---
