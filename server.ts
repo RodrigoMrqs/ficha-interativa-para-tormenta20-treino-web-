@@ -28,10 +28,6 @@ app.prepare().then(() => {
         socket.on("leaveCampaign", (campaignId: string) => {
             socket.leave(campaignId)
         })
-
-        socket.on("updateCharacter", (data: { campaignId: string, character: unknown }) => {
-            socket.to(data.campaignId).emit("characterUpdated", data.character)
-        })
     })
 
     httpServer.listen(3000, () => {

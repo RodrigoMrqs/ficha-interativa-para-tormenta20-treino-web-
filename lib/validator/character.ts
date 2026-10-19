@@ -22,5 +22,13 @@ export const CharacterSchema = z.object ({
     charisma:       z.number().min(1, { message: "Carisma inválido" })
 })
 
+export const UpdateVitalsSchema = z.object({
+    currentHp: z.number().min(0).optional(),
+    currentMana: z.number().min(0).optional(),
+}).refine(data => data.currentHp !== undefined || data.currentMana !== undefined, {
+    message: "Informe ao menos um campo para atualizar",
+})
+
+
 export type CharacterFormData = z.infer<typeof CharacterSchema>
 export type CharacterClassFormData = z.infer<typeof CharacterClassSchema>
