@@ -2,9 +2,8 @@ import Link from 'next/link'
 import { Separator } from '@/components/ui/separator'
 
 const navLinks = [
-  { href: '/personagens', label: 'Meus Personagens' },
-  { href: '/campanhas', label: 'Campanhas' },
-  { href: '/compendio', label: 'Compêndio' },
+  { href: '/characters', label: 'Meus Personagens' },
+  { href: '/campaigns', label: 'Campanhas' },
 ]
 
 export function Sidebar() {

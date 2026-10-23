@@ -18,7 +18,6 @@ Construir uma plataforma web onde jogadores de Tormenta 20 possam criar, gerenci
 - **Rolagem de dados integrada** — clicar em atributos e perícias rola os dados automaticamente
 - **Sincronização em tempo real** — HP, pontos de mana, status e recursos atualizados ao vivo durante a sessão
 - **Gestão de campanhas** — mestres criam campanhas, convidam jogadores e acompanham fichas em tempo real
-- **Compêndio de regras** — banco de dados de poderes, itens, magias e raças do Tormenta 20
 - **Login social** — autenticação via Google e Discord
 
 ---
